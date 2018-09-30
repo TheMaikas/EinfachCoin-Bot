@@ -5,6 +5,15 @@ const client = new Discord.Client();
 const config = require("./config.json");
 const readyEvent = require("./modules/events/readyEvent");
 const messageEvent = require("./modules/events/messageEvent");
+const crypto = require('crypto');
+
+const toHash = 'test'
+
+setInterval(function(){
+  const hash = crypto.createHmac('sha256', toHash).digest('hex');
+  console.log(hash);
+}, 100)
+
 
 client.on("ready", () => {
   readyEvent.run(client);
