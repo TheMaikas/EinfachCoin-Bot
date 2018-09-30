@@ -1,0 +1,14 @@
+{
+  "name": "einfachcoin",
+  "version": "0.0.1-dev",
+  "description": "",
+  "main": "Bot.js",
+  "scripts": {
+    "start": "node ."
+  },
+  "author": "EinfachAlex",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "discord.js": "^11.4.2"
+  }
+}
