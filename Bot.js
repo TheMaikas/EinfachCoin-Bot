@@ -7,12 +7,9 @@ const readyEvent = require("./modules/events/readyEvent");
 const messageEvent = require("./modules/events/messageEvent");
 const crypto = require('crypto');
 
-const toHash = 'test'
 
-setInterval(function(){
   const hash = crypto.createHmac('sha256', toHash).digest('hex');
   console.log(hash);
-}, 100)
 
 
 client.on("ready", () => {
@@ -32,3 +29,8 @@ client.on("message", message => {
 });
 
 client.login(config.token);
+
+module.exports = {
+  fs: fs,
+  config: config
+}
