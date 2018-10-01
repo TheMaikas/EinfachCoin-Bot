@@ -28,7 +28,7 @@ client.on("guildDelete", guild => {
 });
 
 client.on("message", message => {
-  MessageEvent.run(message);
+  messageEvent.run(message);
 });
 
 client.login(config.token);
