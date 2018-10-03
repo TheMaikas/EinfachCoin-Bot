@@ -7,7 +7,6 @@ const readyEvent = require("./modules/events/readyEvent");
 const messageEvent = require("./modules/events/messageEvent");
 
 
-
 client.on("ready", () => {
   readyEvent.run(client);
 });
