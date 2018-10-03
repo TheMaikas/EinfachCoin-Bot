@@ -1,5 +1,6 @@
-let start = Date.now();
+
 function run(message){
+    let start = Date.now();
     const crypto = require('crypto');
 
     var toHash1 = Math.floor(Math.random() * Math.floor(100000));
@@ -11,9 +12,10 @@ function run(message){
     address = "0xEFC" + crypto.createHmac('sha256', address).digest('hex');
 
     return address;
+    console.log("It took " +(Date.now() - start) + " ms to execute 'generateNewAddress.js'");
 }
 
-console.log("It took " +(Date.now() - start) + " ms to execute 'generateNewAddress.js'");
+
 
 module.exports = {
     run: run

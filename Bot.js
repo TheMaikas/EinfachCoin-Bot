@@ -24,9 +24,4 @@ client.on("message", message => {
 });
 
 client.login(config.token);
-console.log(Date.now() - start + " ms");
-
-module.exports = {
-  fs: fs,
-  config: config
-}
+console.log("Started in " + (Date.now() - start) + " ms");

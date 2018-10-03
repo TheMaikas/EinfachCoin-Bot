@@ -1,6 +1,7 @@
-let start = Date.now();
+
 
 function run(message){
+    let start = Date.now();
     try{
         require(`./../../saves/users/${message.author.id}.json`);
         message.channel.send("Already have an account? WTF?");
@@ -16,10 +17,10 @@ function run(message){
         fs.writeFile(`./saves/users/${message.author.id}.json`, JSON.stringify(data, null, 4));
         message.channel.send("Account created!")
     }
+    console.log("It took " + (Date.now() - start) + " ms to execute 'createAccount.js'");
 
 }
 
-console.log("It took " + (Date.now() - start) + " ms to execute 'createAccount.js'");
 
 module.exports = {
     run: run
