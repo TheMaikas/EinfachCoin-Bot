@@ -20,7 +20,7 @@ function run(client){
   }, 60000);
 }
 
-console.log("It took " + Date.now() - start + " ms to execute 'readyEvent.js'");
+console.log("It took " + (Date.now() - start) + " ms to execute 'readyEvent.js'");
 
 module.exports = {
     run: run

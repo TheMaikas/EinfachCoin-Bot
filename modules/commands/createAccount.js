@@ -19,7 +19,7 @@ function run(message){
 
 }
 
-console.log("It took " + Date.now() - start + " ms to execute 'createAccount.js'");
+console.log("It took " + (Date.now() - start) + " ms to execute 'createAccount.js'");
 
 module.exports = {
     run: run

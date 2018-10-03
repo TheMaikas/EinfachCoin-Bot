@@ -19,7 +19,7 @@ function run(message){
     }
 }
 
-console.log("It took " + Date.now() - start + " ms to execute 'messageEvent.js'");
+console.log("It took " + (Date.now() - start) + " ms to execute 'messageEvent.js'");
 
 module.exports = {
     run: run
