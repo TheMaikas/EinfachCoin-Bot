@@ -1,3 +1,4 @@
+let start = Date.now();
 function run(message){
     try{
        const userdata = require(`./../../saves/users/${message.author.id}.json`);
@@ -9,6 +10,7 @@ function run(message){
 
     }
 }
+console.log("It took " + Date.now() - start + " ms to execute 'getBalance.js'");
 module.exports = {
     run: run
 }

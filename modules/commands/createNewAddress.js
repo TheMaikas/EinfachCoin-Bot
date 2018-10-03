@@ -1,3 +1,5 @@
+let start = Date.now();
+
 function run(message){
     const fs = require("fs");
     const gna = require('./../generateNewAddress.js');
@@ -18,6 +20,7 @@ function run(message){
     }
 }
 
+console.log("It took " + Date.now() - start + " ms to execute 'createNewAddress.js'");
 
 module.exports = {
     run: run

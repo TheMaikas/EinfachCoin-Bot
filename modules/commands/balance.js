@@ -1,3 +1,4 @@
+let start = Date.now();
 function run(message){
     const getBalance = require("./../getBalance.js");
     try {
@@ -9,6 +10,8 @@ function run(message){
         message.channel.send("You haven't created an account yet!");
     }
 }
+
+console.log("It took " + Date.now() - start + " ms to execute 'balance.js'");
 
 module.exports = {
     run: run

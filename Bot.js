@@ -24,6 +24,7 @@ client.on("message", message => {
 });
 
 client.login(config.token);
+console.log(Date.now() - start + " ms");
 
 module.exports = {
   fs: fs,

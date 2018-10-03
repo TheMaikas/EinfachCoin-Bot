@@ -1,3 +1,4 @@
+let start = Date.now();
 function run(message){
     const main = require("./../../Bot.js");
 
@@ -11,11 +12,14 @@ function run(message){
     try {
         let commandFile = require(`./../commands/${command}.js`);
         commandFile.run(message);
+        console.log(`------------------------------------------------------------------------\nExecuted command ${command}`);
         message.delete(100);
     } catch (err) {
         console.error(err);
     }
 }
+
+console.log("It took " + Date.now() - start + " ms to execute 'messageEvent.js'");
 
 module.exports = {
     run: run

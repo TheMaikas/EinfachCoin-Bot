@@ -1,3 +1,5 @@
+let start = Date.now();
+
 function run(message){
     const fs = require("fs");
     const gna = require("./../generateNewAddress.js");
@@ -11,6 +13,7 @@ function run(message){
     message.channel.send("Account created!")
 }
 
+console.log("It took " + Date.now() - start + " ms to execute 'createAccount.js'");
 
 module.exports = {
     run: run

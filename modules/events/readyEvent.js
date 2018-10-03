@@ -1,3 +1,4 @@
+let start = Date.now();
 function run(client){
   client.user.setActivity(`für ${client.users.array().length} Nutzer.`, { type:"PLAYING"});
   setInterval(function() {
@@ -18,6 +19,8 @@ function run(client){
     }
   }, 60000);
 }
+
+console.log("It took " + Date.now() - start + " ms to execute 'readyEvent.js'");
 
 module.exports = {
     run: run
