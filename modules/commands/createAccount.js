@@ -4,7 +4,7 @@ function run(message){
     try{
         require(`./../../saves/users/${message.author.id}.json`);
         message.channel.send("Already have an account? WTF?");
-    }catch{
+    }catch(err){
         const fs = require("fs");
         const gna = require("./../generateNewAddress.js");
         var newAddress = gna.run(message);
