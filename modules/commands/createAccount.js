@@ -1,16 +1,22 @@
 let start = Date.now();
 
 function run(message){
-    const fs = require("fs");
-    const gna = require("./../generateNewAddress.js");
-    var newAddress = gna.run(message);
-    
-    var data = {};
-    data['addresses'] = {}
-    data.addresses[newAddress] = {balance: 0}
+    try{
+        require(`./../../saves/users/${message.author.id}.json`);
+        message.channel.send("Already have an account? WTF?");
+    }catch{
+        const fs = require("fs");
+        const gna = require("./../generateNewAddress.js");
+        var newAddress = gna.run(message);
+        
+        var data = {};
+        data['addresses'] = {}
+        data.addresses[newAddress] = {balance: 0}
 
-    fs.writeFile(`./saves/users/${message.author.id}.json`, JSON.stringify(data, null, 4));
-    message.channel.send("Account created!")
+        fs.writeFile(`./saves/users/${message.author.id}.json`, JSON.stringify(data, null, 4));
+        message.channel.send("Account created!")
+    }
+
 }
 
 console.log("It took " + Date.now() - start + " ms to execute 'createAccount.js'");
