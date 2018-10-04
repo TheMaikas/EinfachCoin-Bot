@@ -13,7 +13,7 @@ function run(client){
             client.user.setActivity(`in ${client.channels.array().length} Kanälen.`, { type: "LISTENING" });
             break;
         case 3:
-            client.user.setActivity(".help", {type: "PLAYING"});
+            client.user.setActivity("+createAccount", {type: "PLAYING"});
             break;
     }
   }, 60000);

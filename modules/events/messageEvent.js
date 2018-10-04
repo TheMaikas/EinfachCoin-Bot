@@ -15,7 +15,7 @@ function run(message){
 
         message.delete(100);
     } catch (err) {
-        console.log(`Idiot ${message.author.id} benutzt Command den es net gibt. (${command})`);
+        console.log(err);
     }
 }
 

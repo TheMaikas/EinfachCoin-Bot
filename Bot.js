@@ -24,4 +24,5 @@ client.on("message", message => {
 });
 
 client.login(config.token);
+
 console.log("Started in " + (Date.now() - start) + " ms");
