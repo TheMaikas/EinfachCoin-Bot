@@ -23,8 +23,9 @@ function run(message){
     var difficultyvalue = calculateDifficulty.run(message);
 
     var toHash = {blocknumber: thisBlockNumber2, previousHash: latestBlock.hash, difficulty: difficultyvalue, timestamp: date2, transactions: transactions};
-    console.log(toHash);
-    var Hash = crypto.createHmac('sha256', toHash.toString()).digest('hex');
+
+    
+    var Hash = calculateHash.run(toHash, difficultyvalue);
 
     var data = {blocknumber: thisBlockNumber2, previousHash: latestBlock.hash, hash: Hash, difficulty: difficultyvalue, timestamp: date2, transactions: transactions};
 
