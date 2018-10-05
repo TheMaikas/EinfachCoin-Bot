@@ -5,7 +5,7 @@ function run(message){
     try{
 
         require(`./../../saves/users/${message.author.id}.json`);
-        message.channel.send("Already have an wallet? WTF?");
+        message.channel.send("You already have a wallet? WTF?");
 
     }catch(err){
 

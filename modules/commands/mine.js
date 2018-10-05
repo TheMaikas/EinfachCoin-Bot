@@ -1,7 +1,8 @@
 function run(){
     const crypto  = require("crypto");
     const fs = require("fs");
-    const blockchain = require("./../../blockchain/blockchain.json");
+    var blckch = fs.readFileSync("./blockchain/blockchain.json", 'utf-8');
+    var blockchain = JSON.parse(blckch);
 
     var latestBlockNumber = blockchain.lastBlockNumber;
     var latestBlock = require(`./../../blockchain/${latestBlockNumber}.json`);
