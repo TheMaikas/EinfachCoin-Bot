@@ -1,5 +1,3 @@
-
-
 function run(message){
     let start = Date.now();
     const fs = require("fs");
