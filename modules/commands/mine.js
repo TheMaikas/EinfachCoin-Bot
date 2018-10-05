@@ -14,17 +14,10 @@ function run(){
     
     var previousHash = latestBlock.hash;
     var transactions = {};
-
-    var blockContent = {};
-    blockContent = {blocknumber: thisBlockNumber2, previousHash: latestBlock.hash, timestamp: date2, transactions: transactions};
-    fs.writeFileSync("./blockchain/newblock.json", JSON.stringify(blockContent, null, 4));
-
-    var toHash = require("./../../blockchain/newblock.json");
-    toHash = fs.readFileSync("./blockchain/newblock.json", 'utf-8');
+    
+    var toHash = {blocknumber: thisBlockNumber2, previousHash: latestBlock.hash, timestamp: date2, transactions: transactions};
     var Hash = crypto.createHmac('sha256', toHash.toString()).digest('hex');
-    var data = {};
-    data = {blocknumber: thisBlockNumber2, previousHash: latestBlock.hash, hash: Hash, timestamp: date2, transactions: transactions};
-    var data2 = {};
+    var data = {blocknumber: thisBlockNumber2, previousHash: latestBlock.hash, hash: Hash, timestamp: date2, transactions: transactions};
     var data2 = {lastBlockNumber: thisBlockNumber2};
     fs.writeFileSync(`./blockchain/${thisBlockNumber}.json`, JSON.stringify(data, null, 4));
     fs.writeFileSync(`./blockchain/blockchain.json`, JSON.stringify(data2, null, 4));
