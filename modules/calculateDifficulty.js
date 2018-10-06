@@ -23,14 +23,11 @@ function run(message){
             return 1;
         }
 
-        var time1 = block1.timestamp;
-        var time2 = Math.floor(Date.now() / 1000);
+        var blocksare = block2.blocknumber;
+        var blocksshouldbe = (Math.floor(Date.now() / 1000) - block1.timestamp) / (blockTime);
 
-        var timeis = time2 - time1;
-        var timeshouldbe = (parseInt(block2.blocknumber) - parseInt(block1.blocknumber)) * blockTime;
-
-        var timedifferencep = ((timeshouldbe / timeis) * 100);
-        difficulty = difficulty * ((timedifferencep * difficulty) / 100);
+        var blockdifferencep = (blocksare / blocksshouldbe);
+        difficulty = difficulty * (blockdifferencep * difficulty);
         delete block2;
         if (difficulty == Infinity){
             message.channel.send(":warning: WHAT THE FUCK???? INTEGER OVERFLOW!!! SELFDESTRUCT!!!!!!!!");
