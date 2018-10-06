@@ -40,8 +40,12 @@ function run(message){
     
         fs.writeFile(`./blockchain/${thisBlockNumber}.json`, JSON.stringify(data, null, 4));
         fs.writeFile(`./blockchain/blockchain.json`, JSON.stringify(data2, null, 4));
+        message.channel.send("Block mined! ```" + JSON.stringify(data) + "```");
     }else{
-        message.channel.send("Nope! Unfortunately that didn't work. Try something else instead! (Difficulty: " + difficultyvalue + ")");
+        message.channel.send("Nope! Unfortunately that didn't work. Try something else instead! (Difficulty: " + difficultyvalue + ")")
+        .then(msg => {
+            msg.delete(10000);
+        });
     }
     
     console.log("It took " + (Date.now() - start) + " ms to execute 'mine.js'");

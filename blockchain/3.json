@@ -1,7 +1,9 @@
 {
-    "blocknumber": 3,
-    "previousHash": "117a5ddcc477b7e9c52eb8ed7aa071ed5eea4a8264607b3fae6e05c718efa7b9",
-    "hash": "1e4dd45d042e13742fdb459e892043e06d5321ae22958cc425b1b8b180ced257",
-    "timestamp": "1538649445609",
+    "blocknumber": "3",
+    "previousHash": "aab0056aa8dc49f28415f7b2f569f91f4e852c2174e7184ed22d7e71238c7c47",
+    "hash": "84059e025df3ead4eda1302c8e248f7d3f6b63ff0192d427c710a7f5c1766c9e",
+    "difficulty": "2.566679115060375",
+    "nonce": "1",
+    "timestamp": "1538841943",
     "transactions": {}
 }
