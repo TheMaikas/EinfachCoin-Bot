@@ -12,32 +12,32 @@ function run(message){
     var difficulty = block2.difficulty;
 
     if(blockchain.lastBlockNumber < 100);
-        var block1 = require("./../blockchain/0.json");
+        try{
+            var block1 = require("./../blockchain/0.json");
+        }catch (err){
+            return 1;
+        }
 
-        console.log(block2);
+
         if(block1.timestamp == block2.timestamp){
             return 1;
         }
 
         var time1 = block1.timestamp;
-        var time2 = block2.timestamp;
+        var time2 = Math.floor(Date.now() / 1000);
 
         var timeis = time2 - time1;
-        var timeshouldbe = parseInt(block2.blocknumber) - parseInt(block1.blocknumber);
+        var timeshouldbe = (parseInt(block2.blocknumber) - parseInt(block1.blocknumber)) * blockTime;
 
-        console.log(timeis);
-        console.log(time1);
-        console.log(time2);
-        console.log(timeshouldbe);
-        var timedifference = timeis - timeshouldbe;
-        var timedifferencep = ((timedifference / timeshouldbe) * 100) - 100;
-        console.log(timedifference);
-        console.log(timedifferencep);
-        console.log((timedifferencep * difficulty) / 100);
+        var timedifferencep = ((timeshouldbe / timeis) * 100);
         difficulty = difficulty * ((timedifferencep * difficulty) / 100);
         delete block2;
         if (difficulty == Infinity){
             message.channel.send(":warning: WHAT THE FUCK???? INTEGER OVERFLOW!!! SELFDESTRUCT!!!!!!!!");
+        }
+        if(difficulty < 1){
+            difficulty = 1;
+            return 1;
         }
         return difficulty;
 

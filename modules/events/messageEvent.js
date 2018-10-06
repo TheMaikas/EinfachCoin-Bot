@@ -1,7 +1,7 @@
 function run(message){
     const config = require("./../../config.json");
 
-    if(message.author.id !== "169470476459048960") return;
+    //if(message.author.id !== "169470476459048960") return;
     if(message.author.bot) return;
     if(message.content.indexOf(config.prefix) !== 0) return;
 

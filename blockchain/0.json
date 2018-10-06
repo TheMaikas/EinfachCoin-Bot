@@ -1,7 +1,9 @@
 {
     "blocknumber": "0",
     "previousHash": "0000000000000000000000000000000000000000000000000000000000000000",
-    "hash": "178d9d3cd5fb01fb94dcdaf8b5a3615871790613bb0e00f15a763e6afa2cb336",
-    "timestamp": "1538648811927",
+    "hash": "e4adeab7f1c2a3932748ce55cf5a3890ab0acb6d6de91e575750b3e4899fad7c",
+    "difficulty": "1",
+    "nonce": "1",
+    "timestamp": "1538840961",
     "transactions": {}
 }
