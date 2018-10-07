@@ -6,6 +6,7 @@ function run(message){
     const calculateDifficulty = require("./../calculateDifficulty.js");
     const calculateDiffactor = require("./../calculateDiffactor.js");
     const getMinerReward = require("./../getMinerReward.js");
+    const generateNewTxID = require("./../generateNewTxID.js");
 
     var blckch = fs.readFileSync("./blockchain/blockchain.json", 'utf-8');
     var blockchain = JSON.parse(blckch);
@@ -36,6 +37,17 @@ function run(message){
     var Hash = crypto.createHmac('sha256', JSON.stringify(toHash).toString()).digest('hex');
     
     if(Hash.toString().substr(0, diffactor).includes(diffactor2)){
+        var i = 0;
+        var minerWallet = require(`./../../saves/users/${message.author.id}.json`);
+        var minerAddress;
+        for(x in minerWallet.addresses){
+            if(i < 1){
+                minerAddress = x;
+            }
+            i = i + 1;
+        }
+        var newCoinsTxID = generateNewTxID.run(message);
+        transactions[newCoinsTxID] = {to: minerAddress, amount: 10};
         var data = {blocknumber: thisBlockNumber2, previousHash: latestBlock.hash, hash: Hash, difficulty: difficultyvalue.toString(), nonce: noncevalue, timestamp: date2, transactions: transactions};
         var data2 = {lastBlockNumber: thisBlockNumber2};
 
@@ -44,7 +56,7 @@ function run(message){
         fs.writeFile(`./blockchain/${thisBlockNumber}.json`, JSON.stringify(data, null, 4));
         fs.writeFile(`./blockchain/blockchain.json`, JSON.stringify(data2, null, 4));
 
-        message.channel.send("Block mined! ```" + JSON.stringify(data) + "```");
+        message.channel.send("Block mined! ```json\n" + JSON.stringify(data, null, 4) + "```");
     }else{
         message.channel.send("Nope! Unfortunately that didn't work. Try something else instead! (Difficulty: " + difficultyvalue + ")")
         .then(msg => {

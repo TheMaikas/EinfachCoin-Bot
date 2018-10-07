@@ -14,8 +14,9 @@ function run(message){
         var newAddress = gna.run(message);
         
         var data = {};
-        data['addresses'] = {}
+        data['addresses'] = {};
         data.addresses[newAddress] = {balance: 0}
+        data.addresses[newAddress]['transactions'] = {};
 
         fs.writeFile(`./saves/users/${message.author.id}.json`, JSON.stringify(data, null, 4));
         message.channel.send("Wallet created!")
