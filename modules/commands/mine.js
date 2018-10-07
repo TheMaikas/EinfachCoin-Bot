@@ -33,7 +33,7 @@ function run(message){
     var diffactor = diffactors[0];
     var diffactor2 = diffactors[1];
 
-    var toHash = {blocknumber: thisBlockNumber2, previousHash: latestBlock.hash, difficulty: difficultyvalue, nonce: noncevalue, transactions: transactions};    
+    var toHash = {blocknumber: thisBlockNumber2, previousHash: latestBlock.hash, nonce: noncevalue, transactions: transactions};
     var Hash = crypto.createHmac('sha256', JSON.stringify(toHash).toString()).digest('hex');
     
     if(Hash.toString().substr(0, diffactor).includes(diffactor2)){
