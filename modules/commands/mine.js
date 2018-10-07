@@ -27,7 +27,7 @@ function run(message){
 
     var transactions = {};
 
-    var difficultyvalue = calculateDifficulty.run(message, nonce);
+    var difficultyvalue = calculateDifficulty.run(message, nonce)[0];
 
     var diffactors = calculateDiffactor.run(difficultyvalue);
     var diffactor = diffactors[0];

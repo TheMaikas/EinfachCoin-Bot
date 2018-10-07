@@ -15,28 +15,30 @@ function run(message){
         try{
             var block1 = require("./../blockchain/0.json");
         }catch (err){
-            return 1;
+            return [1, null, null];
         }
+        
+        blocksare = block2.blocknumber;
+        blocksshouldbe = Math.round((Math.floor(Date.now() / 1000) - block1.timestamp) / (blockTime));
 
 
         if(block1.timestamp == block2.timestamp){
-            return 1;
+            return [1, blocksare, blocksshouldbe];
         }
 
-        var blocksare = block2.blocknumber;
-        var blocksshouldbe = (Math.floor(Date.now() / 1000) - block1.timestamp) / (blockTime);
-
+        
         var blockdifferencep = (blocksare / blocksshouldbe);
-        difficulty = difficulty * (blockdifferencep * difficulty);
+        difficulty = difficulty * blockdifferencep;
         delete block2;
         if (difficulty == Infinity){
             message.channel.send(":warning: WHAT THE FUCK???? INTEGER OVERFLOW!!! SELFDESTRUCT!!!!!!!!");
         }
         if(difficulty < 1){
             difficulty = 1;
-            return 1;
+            return [1, blocksare, blocksshouldbe];
         }
-        return difficulty;
+        
+        return [difficulty, blocksare, blocksshouldbe];
 
 }
 
