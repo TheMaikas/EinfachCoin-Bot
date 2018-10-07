@@ -1,4 +1,4 @@
-function run(message){
+function run(message, client){
     const config = require("./../../config.json");
 
     //if(message.author.id !== "169470476459048960") return;
@@ -11,7 +11,7 @@ function run(message){
     try {
         let commandFile = require(`./../commands/${command}.js`);
         console.log(`------------------------------------------------------------------------\nExecuting command ${command}`);
-        commandFile.run(message);
+        commandFile.run(message, client);
 
         message.delete(100);
     } catch (err) {
