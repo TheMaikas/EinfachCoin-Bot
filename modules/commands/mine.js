@@ -9,7 +9,7 @@ function run(message){
     const generateNewTxID = require("./../generateNewTxID.js");
     try{
         var minerWallet = require(`./../../saves/users/${message.author.id}.json`);
-    }catch{
+    }catch(err){
         message.channel.send("You don't have a wallet yet. Create one with '+createWallet'");
     }
 
