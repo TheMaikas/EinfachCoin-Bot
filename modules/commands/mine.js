@@ -7,6 +7,11 @@ function run(message){
     const calculateDiffactor = require("./../calculateDiffactor.js");
     const getMinerReward = require("./../getMinerReward.js");
     const generateNewTxID = require("./../generateNewTxID.js");
+    try{
+        var minerWallet = require(`./../../saves/users/${message.author.id}.json`);
+    }catch{
+        message.channel.send("You don't have a wallet yet. Create one with '+createWallet'");
+    }
 
     var blckch = fs.readFileSync("./blockchain/blockchain.json", 'utf-8');
     var blockchain = JSON.parse(blckch);
@@ -38,7 +43,6 @@ function run(message){
     
     if(Hash.toString().substr(0, diffactor).includes(diffactor2)){
         var i = 0;
-        var minerWallet = require(`./../../saves/users/${message.author.id}.json`);
         var minerAddress;
         for(x in minerWallet.addresses){
             if(i < 1){
