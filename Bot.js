@@ -11,15 +11,15 @@ client.on("ready", () => {
   readyEvent.run(client);
 });
 
-client.on("guildCreate", guild => {
+client.on("guildCreate", (guild) => {
   //TO-DO
 });
 
-client.on("guildDelete", guild => {
+client.on("guildDelete", (guild) => {
   //TO-DO
 });
 
-client.on("message", message => {
+client.on("message", (message) => {
   messageEvent.run(message, client);
 });
 

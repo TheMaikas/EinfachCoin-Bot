@@ -1,5 +1,5 @@
 function run(message, client){
-    if(message.content.includes("nonce")){
+    if(message.content.toUpperCase().includes("NONCE")){
         message.author.send({embed: {
             color: 2007070,
             author: {
@@ -48,7 +48,7 @@ function run(message, client){
             description: "Welcome to the <:EinfachCoin:437267554377924608> Help!",
             fields: [{
                 name: "What does this Bot do?",
-                value: "EinfachCoin is a DiscordBot, which is kind of crypto currency. Of course the whole thing is not decentralized and does not run on different servers. But there is a blockchain, you can mine blocks and of course you can also send \"EinfachCoins\". EinfachCoin is constantly being further developed. If you have wishes or ideas, just [post them in our Github Repository](https://github.com/EinfachAlex/EinfachCoin-Bot/issues)."
+                value: "EinfachCoin is a DiscordBot, which is a kind of crypto currency. Of course the whole thing is not decentralized and does not run on different servers. But there is a blockchain, you can mine blocks and of course you can also send \"EinfachCoins\". EinfachCoin is constantly being further developed. If you have wishes or ideas, just [post them in our Github Repository](https://github.com/EinfachAlex/EinfachCoin-Bot/issues)."
             },
             {
                 name: "Why the hell did you create this Bot?",
