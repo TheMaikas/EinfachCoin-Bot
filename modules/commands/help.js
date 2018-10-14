@@ -18,6 +18,25 @@ function run(message, client){
             }
         }
         });
+    }else if(message.content.includes("difficulty")){
+        message.author.send({embed: {
+            color: 2007070,
+            author: {
+            name: client.user.username,
+            icon_url: client.user.avatarURL
+            },
+            title: "EinfachCoin Help",
+            description: "Welcome to the <:EinfachCoin:437267554377924608> Help!",
+            fields: [{
+                name: "What is 'difficulty'",
+                value: "At the moment a new block should be found every 10 minutes, if too many blocks are found, the difficulty increases, if too few blocks, the difficulty decreases. You can display the current difficulty with **'+difficulty'**."
+            }],
+            footer: {
+            icon_url: client.user.avatarURL,
+            text: "© EinfachCoin"
+            }
+        }
+        });
     }else{
         message.author.send({embed: {
             color: 2007070,
@@ -29,7 +48,7 @@ function run(message, client){
             description: "Welcome to the <:EinfachCoin:437267554377924608> Help!",
             fields: [{
                 name: "What does this Bot do?",
-                value: "EinfachCoin is a DiscordBot, which is by and large a kind of crypto currency. Of course the whole thing is not decentralized and does not run on different servers. But there is a blockchain, you can mine blocks and of course you can also send \"EinfachCoins\". EinfachCoin is constantly being further developed. If you have wishes or ideas, just [post them in our Github Repository](https://github.com/EinfachAlex/EinfachCoin-Bot/issues)."
+                value: "EinfachCoin is a DiscordBot, which is kind of crypto currency. Of course the whole thing is not decentralized and does not run on different servers. But there is a blockchain, you can mine blocks and of course you can also send \"EinfachCoins\". EinfachCoin is constantly being further developed. If you have wishes or ideas, just [post them in our Github Repository](https://github.com/EinfachAlex/EinfachCoin-Bot/issues)."
             },
             {
                 name: "Why the hell did you create this Bot?",

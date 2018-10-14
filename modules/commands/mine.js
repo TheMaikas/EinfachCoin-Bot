@@ -31,6 +31,7 @@ function run(message){
     var previousHash = latestBlock.hash;
 
     var transactions = {};
+    //pool.json laden. Transaktionen mit der höchsten gebühr suchen und in die var transactions schreiben.
 
     var difficultyvalue = calculateDifficulty.run(message, nonce)[0];
 
@@ -56,6 +57,8 @@ function run(message){
         var data2 = {lastBlockNumber: thisBlockNumber2};
 
         getMinerReward.run(message);
+
+        //Empfänger der Transaktionen die Coins gutschreiben.
     
         fs.writeFile(`./blockchain/${thisBlockNumber}.json`, JSON.stringify(data, null, 4));
         fs.writeFile(`./blockchain/blockchain.json`, JSON.stringify(data2, null, 4));
