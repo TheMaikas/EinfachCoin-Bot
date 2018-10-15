@@ -15,7 +15,7 @@ client.on("guildCreate", guild => {
   //TO-DO
 });
 
-client.on("guildDelete",(guild => {
+client.on("guildDelete",guild => {
   //TO-DO
 });
 
