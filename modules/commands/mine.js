@@ -19,6 +19,8 @@ function run(message){
     var latestBlockNumber = blockchain.lastBlockNumber;
     var latestBlock = require(`./../../blockchain/${latestBlockNumber}.json`);
 
+    var pool = JSON.parse(fs.readFileSync("./saves/pool.json"));
+
     var thisBlockNumber = parseInt(latestBlockNumber) + 1;
     var thisBlockNumber2 = thisBlockNumber.toString();
 
@@ -30,14 +32,32 @@ function run(message){
     
     var previousHash = latestBlock.hash;
 
-    var transactions = {};
-    //pool.json laden. Transaktionen mit der höchsten gebühr suchen und in die var transactions schreiben.
-
     var difficultyvalue = calculateDifficulty.run(message, nonce)[0];
 
     var diffactors = calculateDiffactor.run(difficultyvalue);
     var diffactor = diffactors[0];
     var diffactor2 = diffactors[1];
+
+    var transactions = {};
+
+    var highestfee = 0;
+    for (x in pool.fee){
+        if(x > highestfee){
+            highestfee = x;
+        }
+    }
+
+    var bytes = 0;
+    for (x in pool.fee[highestfee]){
+        bytes = bytes + JSON.stringify(pool.fee[highestfee][x]).toString().length
+        console.log(bytes)
+    }
+
+
+
+
+
+
 
     var toHash = {blocknumber: thisBlockNumber2, previousHash: latestBlock.hash, nonce: noncevalue, transactions: transactions};
     var Hash = crypto.createHmac('sha256', JSON.stringify(toHash).toString()).digest('hex');

@@ -14,11 +14,14 @@ function run(message){
     user = require(`./../../saves/users/${message.author.id}.json`);
 
     split = message.content.split(' ');
-    to = split[1];
-    amount = split[2];
-    fee = split[3];
-
-    checkAndSave(message);
+    if (split.length < 4){
+        message.channel.send("Maybe you should give some more parameters? ```+transfer <TO> <AMOUNT> <FEE>```");
+    }else{
+        to = split[1];
+        amount = split[2];
+        fee = split[3];
+        checkAndSave(message);
+    }
 }
 
 
@@ -26,11 +29,13 @@ function run(message){
 function checkAndSave(message){
     for(x in user.addresses){
         console.log("hi");
+        console.log(user.addresses[x].balance + " " + amount + " " + fee);
         if(user.addresses[x].balance > amount + fee){
             console.log("hi 2")
             
             var transactionid = generateNewTxID.run(message);
-            pool.fee[fee] = { transactionid: {from: x, to: to, amount: amount, fee: fee}};
+            pool.fee[fee] = {};
+            pool.fee[fee][transactionid] = {from: x, to: to, amount: amount, fee: fee};
             user.addresses[x].balance = user.addresses[x].balance - amount;
             user.addresses[x].transactions[transactionid] = {to: to, amount: amount};
             fs.writeFile(`./saves/users/${message.author.id}.json`, JSON.stringify(user, null, 4));
