@@ -1,6 +1,6 @@
 function run(message){
-    if(message.content.length < 7) return message.reply("Wie wäre es mit Nonce angeben?");
     let start = Date.now();
+    if(message.content.length < 7) return message.reply("Wie wäre es mit Nonce angeben?");
     const crypto  = require("crypto");
     const fs = require("fs");
     const calculateDifficulty = require("./../calculateDifficulty.js");
@@ -41,25 +41,29 @@ function run(message){
     var transactions = {};
 
     var highestfee = 0;
+
+    var fees = [];
     for (x in pool.fee){
-        if(x > highestfee){
-            highestfee = x;
+        fees.push(x);
+    }
+    fees.sort(sortNumber);
+
+    var bytes = 0;
+    for(x in fees){
+        for(y in pool.fee[fees[x]]){
+            if(bytes < 1000){
+                var TxID = y;
+                var Tx = pool.fee[fees[x]][y];
+                transactions[y] = pool.fee[fees[x]][y];
+               
+                bytes = bytes + parseInt(JSON.stringify(Tx).length);
+                console.log(bytes);
+            }
         }
     }
 
-    var bytes = 0;
-    for (x in pool.fee[highestfee]){
-        bytes = bytes + JSON.stringify(pool.fee[highestfee][x]).toString().length
-        console.log(bytes)
-    }
 
-
-
-
-
-
-
-    var toHash = {blocknumber: thisBlockNumber2, previousHash: latestBlock.hash, nonce: noncevalue, transactions: transactions};
+    var toHash = {blocknumber: thisBlockNumber2, previousHash: latestBlock.hash, difficulty: difficultyvalue.toString(), nonce: noncevalue, bytes: bytes, transactions: transactions};
     var Hash = crypto.createHmac('sha256', JSON.stringify(toHash).toString()).digest('hex');
     
     if(Hash.toString().substr(0, diffactor).includes(diffactor2)){
@@ -73,7 +77,7 @@ function run(message){
         }
         var newCoinsTxID = generateNewTxID.run(message);
         transactions[newCoinsTxID] = {to: minerAddress, amount: 10};
-        var data = {blocknumber: thisBlockNumber2, previousHash: latestBlock.hash, hash: Hash, difficulty: difficultyvalue.toString(), nonce: noncevalue, timestamp: date2, transactions: transactions};
+        var data = {blocknumber: thisBlockNumber2, previousHash: latestBlock.hash, hash: Hash, difficulty: difficultyvalue.toString(), nonce: noncevalue, bytes: bytes, timestamp: date2, transactions: transactions};
         var data2 = {lastBlockNumber: thisBlockNumber2};
 
         getMinerReward.run(message);
@@ -92,6 +96,10 @@ function run(message){
     }
     
     console.log("It took " + (Date.now() - start) + " ms to execute 'mine.js'");
+}
+
+function sortNumber(a,b) {
+    return b - a;
 }
 
 module.exports = {
