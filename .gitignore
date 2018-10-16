@@ -2,3 +2,5 @@
 /.vscode
 config.json
 /blockchain
+testfile.js
+saves/pool.json
