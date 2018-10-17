@@ -76,7 +76,7 @@ function run(message){
             i = i + 1;
         }
         var newCoinsTxID = generateNewTxID.run(message);
-        transactions[newCoinsTxID] = {to: minerAddress, amount: 10};
+        transactions[newCoinsTxID] = {from: (0xEFC0000000000000000000000000000000000000000000000000000000000000000).toString(), to: minerAddress, amount: 10, fee: 0};
         var data = {blocknumber: thisBlockNumber2, previousHash: latestBlock.hash, hash: Hash, difficulty: difficultyvalue.toString(), nonce: noncevalue, bytes: bytes, timestamp: date2, transactions: transactions};
         var data2 = {lastBlockNumber: thisBlockNumber2};
 
@@ -88,6 +88,15 @@ function run(message){
         fs.writeFile(`./blockchain/blockchain.json`, JSON.stringify(data2, null, 4));
 
         message.channel.send("Block mined! ```json\n" + JSON.stringify(data, null, 4) + "```");
+        
+        for(x in transactions){
+            if(transactions[x].fee > 0){
+                delete pool.fee[transactions[x].fee][x];
+            }
+            fs.writeFileSync("./saves/pool.json", JSON.stringify(pool, null, 4));
+        }
+        //Delete pool.fee[]
+        //delete from pool.json
     }else{
         message.channel.send("Nope! Unfortunately that didn't work. Try something else instead! (Difficulty: " + difficultyvalue + ")")
         .then(msg => {
