@@ -4,11 +4,12 @@ function run(message){
 
     
 
-        var tester = require(`./../../saves/users/${message.author.id}.json`);
-        if(tester) {
-            message.channel.send("You already have a wallet? WTF?");
-            return;
-        }
+    try{
+
+        require(`./../../saves/users/${message.author.id}.json`);
+        message.channel.send("You already have a wallet? WTF?");
+
+    }catch(err){
 
         const fs = require("fs");
         const gna = require("../generateNewAddress.js");
