@@ -34,7 +34,10 @@ function checkAndSave(message){
             console.log("hi 2")
             
             var transactionid = generateNewTxID.run(message);
-            pool.fee[fee] = {};
+            console.log(transactionid);
+            if(pool.fee[fee] == undefined){
+                pool.fee[fee] = {};
+            }
             pool.fee[fee][transactionid] = {from: x, to: to, amount: amount, fee: fee};
             user.addresses[x].balance = user.addresses[x].balance - amount;
             user.addresses[x].transactions[transactionid] = {to: to, amount: amount};
