@@ -22,7 +22,8 @@ function run(message){
 
         fs.writeFile(`./saves/users/${message.author.id}.json`, JSON.stringify(data, null, 4));
         message.channel.send("Wallet created!")
-    console.log("It took " + (Date.now() - start) + " ms to execute 'createWallet.js'");
+        console.log("It took " + (Date.now() - start) + " ms to execute 'createWallet.js'");
+    }
 }
 
 
