@@ -38,7 +38,7 @@ function checkAndSave(message){
             if(pool.fee[fee] == undefined){
                 pool.fee[fee] = {};
             }
-            pool.fee[fee][transactionid] = {from: x, to: to, amount: amount, fee: fee};
+            pool.fee[fee][transactionid] = {from: x, to: to, amount: amount, fee: fee, timestamp: (Math.floor(Date.now() / 1000)).toString()};
             user.addresses[x].balance = user.addresses[x].balance - amount;
             user.addresses[x].transactions[transactionid] = {to: to, amount: amount};
             fs.writeFile(`./saves/users/${message.author.id}.json`, JSON.stringify(user, null, 4));
