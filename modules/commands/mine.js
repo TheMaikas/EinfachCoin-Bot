@@ -81,10 +81,6 @@ function run(message){
         transactions[newCoinsTxID] = {from: "0xEFC0000000000000000000000000000000000000000000000000000000000000000", to: minerAddress, amount: 10, fee: 0, timestamp:(Math.floor(Date.now() / 1000)).toString()};
         var data = {blocknumber: thisBlockNumber2, previousHash: latestBlock.hash, hash: Hash, difficulty: difficultyvalue.toString(), nonce: noncevalue, bytes: bytes, timestamp: date2, transactions: transactions};
         var data2 = {lastBlockNumber: thisBlockNumber2};
-
-        
-
-        //Empfänger der Transaktionen die Coins gutschreiben.
     
         fs.writeFile(`./blockchain/${thisBlockNumber}.json`, JSON.stringify(data, null, 4));
         fs.writeFile(`./blockchain/blockchain.json`, JSON.stringify(data2, null, 4));
@@ -98,7 +94,7 @@ function run(message){
             try{
                 //What the hell is this?
                 var receiveruser = getUserByAddress.run(transactions[x].to);
-                var receiver = fs.readFileSync(`./../../saves/users/${receiveruser}.json`, 'utf-8');
+                var receiver = fs.readFileSync(`./saves/users/${receiveruser}.json`, 'utf-8');
                     receiver.addresses[transactions[x].to].balance = parseInt(receiver.addresses[transactions[x].to].balance) + parseInt(transactions[x].amount);
                     receiver.addresses[transactions[x].to].transactions[x] = {from: transactions[x].from, amount: transactions[x].amount, timestamp: transactions[x].timestamp}
                     fs.writeFileSync(`./saves/users/${receiveruser}.json`, JSON.stringify(receiver, null, 4));
