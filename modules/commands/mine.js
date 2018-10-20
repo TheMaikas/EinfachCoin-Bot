@@ -91,19 +91,15 @@ function run(message){
             if(transactions[x].fee > 0){
                 delete pool.fee[transactions[x].fee][x];
             }
-            try{
                 //What the hell is this?
                 var receiveruser = getUserByAddress.run(transactions[x].to);
                 var receiver = fs.readFileSync(`./saves/users/${receiveruser}.json`, 'utf-8');
                 var receiver = JSON.parse(fs.readFileSync(`./saves/users/${receiveruser}.json`, 'utf-8')); //I'm jumping out the window.
                 var receiveruser = parseInt(getUserByAddress.run(transactions[x].to));
+                var receiver = JSON.parse(fs.readFileSync(`./saves/users/169470476459048960.json`, 'utf-8'));
                     receiver.addresses[transactions[x].to].balance = parseInt(receiver.addresses[transactions[x].to].balance) + parseInt(transactions[x].amount);
                     receiver.addresses[transactions[x].to].transactions[x] = {from: transactions[x].from, amount: transactions[x].amount, timestamp: transactions[x].timestamp}
                     fs.writeFileSync(`./saves/users/${receiveruser}.json`, JSON.stringify(receiver, null, 4));
-            }catch (err){
-                console.log(err);
-                message.channel.send("Da sind n paar Coins am Arsch der Welt gelandet!");
-            }
             
             fs.writeFileSync("./saves/pool.json", JSON.stringify(pool, null, 4));
 
