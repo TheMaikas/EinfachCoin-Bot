@@ -13,12 +13,15 @@ function run(message){
 
         const fs = require("fs");
         const gna = require("../generateNewAddress.js");
+        const addToAddressBook = require("./../addToAddressBook.js");
         var newAddress = gna.run(message);
         
         var data = {};
         data['addresses'] = {};
         data.addresses[newAddress] = {balance: 0}
         data.addresses[newAddress]['transactions'] = {};
+
+        addToAddressBook.run(message.author.id, newAddress);
 
         fs.writeFile(`./saves/users/${message.author.id}.json`, JSON.stringify(data, null, 4));
         message.channel.send("Wallet created!")
