@@ -96,6 +96,7 @@ function run(message){
                 var receiveruser = getUserByAddress.run(transactions[x].to);
                 var receiver = fs.readFileSync(`./saves/users/${receiveruser}.json`, 'utf-8');
                 var receiver = JSON.parse(fs.readFileSync(`./saves/users/${receiveruser}.json`, 'utf-8')); //I'm jumping out the window.
+                var receiveruser = parseInt(getUserByAddress.run(transactions[x].to));
                     receiver.addresses[transactions[x].to].balance = parseInt(receiver.addresses[transactions[x].to].balance) + parseInt(transactions[x].amount);
                     receiver.addresses[transactions[x].to].transactions[x] = {from: transactions[x].from, amount: transactions[x].amount, timestamp: transactions[x].timestamp}
                     fs.writeFileSync(`./saves/users/${receiveruser}.json`, JSON.stringify(receiver, null, 4));
