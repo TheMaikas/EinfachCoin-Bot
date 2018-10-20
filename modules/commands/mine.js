@@ -13,6 +13,7 @@ function run(message){
         var minerWallet = require(`./../../saves/users/${message.author.id}.json`);
     }catch(err){
         message.channel.send("You don't have a wallet yet. Create one with '+createWallet'");
+        return;
     }
 
     var blckch = fs.readFileSync("./blockchain/blockchain.json", 'utf-8');
@@ -91,10 +92,6 @@ function run(message){
             if(transactions[x].fee > 0){
                 delete pool.fee[transactions[x].fee][x];
             }
-                //What the hell is this?
-                var receiveruser = getUserByAddress.run(transactions[x].to);
-                var receiver = fs.readFileSync(`./saves/users/${receiveruser}.json`, 'utf-8');
-                var receiver = JSON.parse(fs.readFileSync(`./saves/users/${receiveruser}.json`, 'utf-8')); //I'm jumping out the window.
                 var receiveruser = parseInt(getUserByAddress.run(transactions[x].to));
                 var receiver = JSON.parse(fs.readFileSync(`./saves/users/169470476459048960.json`, 'utf-8'));
                     receiver.addresses[transactions[x].to].balance = parseInt(receiver.addresses[transactions[x].to].balance) + parseInt(transactions[x].amount);
