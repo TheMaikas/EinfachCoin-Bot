@@ -1,7 +1,8 @@
 function run(message){
-    var miner = require(`./../saves/users/${message.author.id}.json`);
-    const generateNewTxID = require("./generateNewTxID.js")
     const fs = require("fs");
+    var miner = fs.readFileSync(`./saves/users/${message.author.id}.json`, 'utf-8');
+    const generateNewTxID = require("./generateNewTxID.js")
+
 
     for(x in miner.addresses){
         var transactionid = generateNewTxID.run(message);

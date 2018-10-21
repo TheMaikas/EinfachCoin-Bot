@@ -30,7 +30,7 @@ function checkAndSave(message){
     for(x in user.addresses){
         console.log("hi");
         console.log(user.addresses[x].balance + " " + amount + " " + fee);
-        if(user.addresses[x].balance > amount + fee){
+        if(parseInt(user.addresses[x].balance) > parseInt(amount) + parseInt(fee)){
             console.log("hi 2")
             
             var transactionid = generateNewTxID.run(message);
