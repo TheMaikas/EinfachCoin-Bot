@@ -55,12 +55,17 @@ function run(message){
     for(x in fees){
         for(y in pool.fee[fees[x]]){
             if(bytes < 1000){
+    var totalFee = 0;
+    for (x in fees) {
+        for (y in pool.fee[fees[x]]) {
+            if (bytes < 1000) {
                 var TxID = y;
                 var Tx = pool.fee[fees[x]][y];
                 transactions[y] = pool.fee[fees[x]][y];
                
                 bytes = bytes + parseInt(JSON.stringify(Tx).length);
                 console.log(bytes);
+                totalFee = totalFee + parseInt(pool.fee[fees[x]][y].fee);
             }
         }
     }
@@ -79,10 +84,13 @@ function run(message){
             i = i + 1;
         }
         var newCoinsTxID = generateNewTxID.run(message);
-        transactions[newCoinsTxID] = {from: "0xEFC0000000000000000000000000000000000000000000000000000000000000000", to: minerAddress, amount: 10, fee: 0, timestamp:(Math.floor(Date.now() / 1000)).toString()};
-        var data = {blocknumber: thisBlockNumber2, previousHash: latestBlock.hash, hash: Hash, difficulty: difficultyvalue.toString(), nonce: noncevalue, bytes: bytes, timestamp: date2, transactions: transactions};
-        var data2 = {lastBlockNumber: thisBlockNumber2};
-    
+        transactions[newCoinsTxID] = {
+            from: "0xEFC0000000000000000000000000000000000000000000000000000000000000000",
+            to: minerAddress,
+            amount: (10 + totalFee),
+            fee: 0,
+            timestamp: (Math.floor(Date.now() / 1000)).toString()
+        };
         fs.writeFile(`./blockchain/${thisBlockNumber}.json`, JSON.stringify(data, null, 4));
         fs.writeFile(`./blockchain/blockchain.json`, JSON.stringify(data2, null, 4));
         getMinerReward.run(message);
