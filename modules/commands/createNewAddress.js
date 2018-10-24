@@ -1,4 +1,4 @@
-function run(message){
+function run(message) {
     let start = Date.now();
     const fs = require("fs");
     const gna = require('./../generateNewAddress.js');
@@ -7,15 +7,18 @@ function run(message){
 
     var lastbalance;
 
-    for(let x in userdata.addresses){
+    for (let x in userdata.addresses) {
         lastbalance = userdata.addresses[x].balance;
     }
 
-    if(lastbalance == 0){
+    if (lastbalance == 0) {
         message.channel.send("You don't need a new address! There are no coins on your newest address!")
-    }else{
+    } else {
         var newAddress = gna.run(message);
-        userdata.addresses[newAddress] = {balance: 0, transactions: {}};
+        userdata.addresses[newAddress] = {
+            balance: 0,
+            transactions: {}
+        };
         addToAddressBook.run(message.author.id, newAddress);
         fs.writeFile(`./saves/users/${message.author.id}.json`, JSON.stringify(userdata, null, 4));
     }

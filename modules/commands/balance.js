@@ -1,12 +1,13 @@
-function run(message){
+function run(message) {
     let start = Date.now();
+    const fs = require('fs');
 
-    if(message.mentions.users.array()[0] !== undefined){
-        try{
-            const userdata = require(`./../../saves/users/${message.mentions.users.array()[0].id}.json`);
-            message.channel.send("Addresses from " + message.mentions.users.array()[0].id); 
+    if (message.mentions.users.array()[0] !== undefined) {
+        try {
+            var userdata = JSON.parse(fs.readFileSync(`./saves/users/${message.mentions.users.array()[0].id}.json`, 'utf-8'));
+            message.channel.send("Addresses from " + message.mentions.users.array()[0].id);
 
-            for(let x in userdata.addresses){
+            for (let x in userdata.addresses) {
                 message.channel.send(x + ": " + userdata.addresses[x].balance);
             }
 
@@ -14,25 +15,25 @@ function run(message){
             message.channel.send("This user doesn't have a wallet yet!");
         }
 
-    }else{
+    } else {
 
         try {
 
-            const userdata = require(`./../../saves/users/${message.author.id}.json`);
-            message.channel.send("Addresses from " + message.author.username); 
-    
-            for(let x in userdata.addresses){
+            var userdata = JSON.parse(fs.readFileSync(`./saves/users/${message.author.id}.json`, 'utf-8'));
+            message.channel.send("Addresses from " + message.author.username);
+
+            for (let x in userdata.addresses) {
                 message.channel.send(x + ": " + userdata.addresses[x].balance);
             }
-    
+
         } catch (err) {
-            message.channel.send("You don't have a wallet yet!");
+            message.channel.send("You don't have a wallet yet!" + err);
         }
 
     }
 
-   
-    
+
+
     console.log("It took " + (Date.now() - start) + " ms to execute 'balance.js'");
 }
 

@@ -1,24 +1,26 @@
-function run(message){
+function run(message) {
 
     let start = Date.now();
 
-    
 
-    try{
+
+    try {
 
         require(`./../../saves/users/${message.author.id}.json`);
         message.channel.send("You already have a wallet? WTF?");
 
-    }catch(err){
+    } catch (err) {
 
         const fs = require("fs");
         const gna = require("../generateNewAddress.js");
         const addToAddressBook = require("./../addToAddressBook.js");
         var newAddress = gna.run(message);
-        
+
         var data = {};
         data['addresses'] = {};
-        data.addresses[newAddress] = {balance: 0}
+        data.addresses[newAddress] = {
+            balance: 0
+        }
         data.addresses[newAddress]['transactions'] = {};
 
         addToAddressBook.run(message.author.id, newAddress);

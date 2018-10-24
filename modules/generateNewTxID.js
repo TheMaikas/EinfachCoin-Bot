@@ -1,4 +1,4 @@
-function run(message){
+function run(message) {
     const crypto = require("crypto");
 
     var toHash1 = Math.floor(Math.random() * Math.floor(100000));
