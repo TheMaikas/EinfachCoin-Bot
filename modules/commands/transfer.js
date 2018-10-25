@@ -1,4 +1,4 @@
-const generateNewTxID = require("./../generateNewTxID.js");
+const generateNewTxID = require("./../generatenewtxid.js");
 const fs = require('fs');
 
 var pool;

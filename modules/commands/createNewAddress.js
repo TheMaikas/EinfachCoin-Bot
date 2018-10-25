@@ -1,9 +1,9 @@
 function run(message) {
     let start = Date.now();
     const fs = require("fs");
-    const gna = require('./../generateNewAddress.js');
+    const gna = require('./../generatenewaddress.js');
     const userdata = require(`./../../saves/users/${message.author.id}.json`);
-    const addToAddressBook = require("./../addToAddressBook.js")
+    const addToAddressBook = require("./../addtoaddressbook.js")
 
     var lastbalance;
 
@@ -22,7 +22,7 @@ function run(message) {
         addToAddressBook.run(message.author.id, newAddress);
         fs.writeFile(`./saves/users/${message.author.id}.json`, JSON.stringify(userdata, null, 4));
     }
-    console.log("It took " + (Date.now() - start) + " ms to execute 'createNewAddress.js'");
+    console.log("It took " + (Date.now() - start) + " ms to execute 'createnewaddress.js'");
 }
 
 

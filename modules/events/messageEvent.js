@@ -1,9 +1,9 @@
-function run(message, client){
+function run(message, client) {
     const config = require("./../../config.json");
 
     //if(message.author.id !== "169470476459048960") return;
-    if(message.author.bot) return;
-    if(message.content.indexOf(config.prefix) !== 0) return;
+    if (message.author.bot) return;
+    if (message.content.indexOf(config.prefix) !== 0) return;
 
     const commandmsg = message.content.slice(config.prefix.length).trim().split(/ +/g);
     const command = commandmsg.shift().toLowerCase();

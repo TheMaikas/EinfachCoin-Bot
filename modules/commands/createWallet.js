@@ -12,8 +12,8 @@ function run(message) {
     } catch (err) {
 
         const fs = require("fs");
-        const gna = require("../generateNewAddress.js");
-        const addToAddressBook = require("./../addToAddressBook.js");
+        const gna = require("../generatenewaddress.js");
+        const addToAddressBook = require("./../addtoaddressbook.js");
         var newAddress = gna.run(message);
 
         var data = {};
@@ -27,7 +27,7 @@ function run(message) {
 
         fs.writeFile(`./saves/users/${message.author.id}.json`, JSON.stringify(data, null, 4));
         message.channel.send("Wallet created!")
-        console.log("It took " + (Date.now() - start) + " ms to execute 'createWallet.js'");
+        console.log("It took " + (Date.now() - start) + " ms to execute 'createwallet.js'");
     }
 }
 

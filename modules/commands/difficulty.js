@@ -1,5 +1,5 @@
 function run(message, client) {
-    const diff = require("./../calculateDifficulty.js");
+    const diff = require("./../calculatedifficulty.js");
     const blockchain = require("./../../blockchain/blockchain.json");
 
     var difficultyreturn = diff.run(message);

@@ -1,5 +1,5 @@
 function run(client) {
-    const diff = require("./../calculateDifficulty.js");
+    const diff = require("./../calculatedifficulty.js");
     const blocks = require("./../../blockchain/blockchain.json").lastBlockNumber;
     client.user.setActivity(`für ${client.users.array().length} Nutzer.`, {
         type: "PLAYING"
