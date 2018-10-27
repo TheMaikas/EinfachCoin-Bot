@@ -7,7 +7,10 @@ function run(message) {
     try {
 
         require(`./../../saves/users/${message.author.id}.json`);
-        message.channel.send("You already have a wallet? WTF?");
+        message.channel.send("You already have a wallet? WTF?")
+        .then(msg => {
+            msg.delete(60000);
+        });
 
     } catch (err) {
 
@@ -27,6 +30,9 @@ function run(message) {
 
         fs.writeFile(`./saves/users/${message.author.id}.json`, JSON.stringify(data, null, 4));
         message.channel.send("Wallet created!")
+        .then(msg => {
+            msg.delete(60000);
+        });
         console.log("It took " + (Date.now() - start) + " ms to execute 'createwallet.js'");
     }
 }

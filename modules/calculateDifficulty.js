@@ -33,7 +33,10 @@ function run(message) {
     difficulty = difficulty * blockdifferencep;
     delete block2;
     if (difficulty == Infinity) {
-        message.channel.send(":warning: INTEGER OVERFLOW!!!");
+        message.channel.send(":warning: INTEGER OVERFLOW!!!")
+        .then(msg => {
+            msg.delete(60000);
+        });
         return [Number.MAX_SAFE_INTEGER, blocksare, blocksshouldbe]
     }
     if (difficulty < 1) {

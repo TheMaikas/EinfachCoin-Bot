@@ -33,6 +33,9 @@ function run(message, client) {
                 text: "© EinfachCoin"
             }
         }
+    })
+    .then(msg => {
+        msg.delete(60000);
     });
 }
 

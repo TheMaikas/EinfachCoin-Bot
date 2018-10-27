@@ -13,6 +13,9 @@ function run(message) {
 
     if (lastbalance == 0) {
         message.channel.send("You don't need a new address! There are no coins on your newest address!")
+        .then(msg => {
+            msg.delete(60000);
+        });
     } else {
         var newAddress = gna.run(message);
         userdata.addresses[newAddress] = {

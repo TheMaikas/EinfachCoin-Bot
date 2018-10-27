@@ -2,6 +2,9 @@ function run(client) {
     const diff = require("../calculatedifficulty.js");
     const fs = require('fs');
     const blocks = (JSON.parse(fs.readFileSync("./blockchain/blockchain.json", 'utf-8'))).lastBlockNumber;
+    const DBL = require("dblapi.js");
+    const config = require("./../../config.json");
+    const dbl = new DBL(config.dbltoken, client);
 
     setInterval(function () {
         let statusint = Math.floor(Math.random() * Math.floor(7));
@@ -43,6 +46,10 @@ function run(client) {
                 break;
         }
     }, 30000);
+
+    setInterval(() => {
+        dbl.postStats(client.guilds.size);
+    }, 1800000);
 }
 
 module.exports = {

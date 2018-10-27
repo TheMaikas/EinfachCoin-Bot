@@ -15,11 +15,18 @@ function run(message) {
 
     split = message.content.split(' ');
     if (split.length < 4) {
-        message.channel.send("Maybe you should give some more parameters? ```+transfer <TO> <AMOUNT> <FEE>```");
+        message.channel.send("Maybe you should give some more parameters? ```+transfer <TO> <AMOUNT> <FEE>```")
+        .then(msg => {
+            msg.delete(60000);
+        });
     } else {
         to = split[1];
         amount = split[2];
         fee = split[3];
+        if(fee < 1) return message.channel.send(":warning: Fee must be at least 1")
+        .then(msg => {
+            msg.delete(60000);
+        });
         checkAndSave(message);
     }
 }
@@ -28,13 +35,8 @@ function run(message) {
 
 function checkAndSave(message) {
     for (x in user.addresses) {
-        console.log("hi");
-        console.log(user.addresses[x].balance + " " + amount + " " + fee);
         if (parseInt(user.addresses[x].balance) > parseInt(amount) + parseInt(fee)) {
-            console.log("hi 2")
-
             var transactionid = generateNewTxID.run(message);
-            console.log(transactionid);
             if (pool.fee[fee] == undefined) {
                 pool.fee[fee] = {};
             }

@@ -12,7 +12,10 @@ function run(message) {
     try {
         var minerWallet = require(`./../../saves/users/${message.author.id}.json`);
     } catch (err) {
-        message.channel.send("You don't have a wallet yet. Create one with '+createWallet'");
+        message.channel.send("You don't have a wallet yet. Create one with '+createWallet'")
+        .then(msg => {
+            msg.delete(60000);
+        });
         return;
     }
 
