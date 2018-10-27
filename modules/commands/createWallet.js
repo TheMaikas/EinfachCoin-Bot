@@ -13,7 +13,7 @@ function run(message) {
 
         const fs = require("fs");
         const gna = require("../generatenewaddress.js");
-        const addToAddressBook = require("./../addtoaddressbook.js");
+        const addToAddressBook = require("../addtoaddressbook.js");
         var newAddress = gna.run(message);
 
         var data = {};

@@ -1,9 +1,9 @@
 function run(message) {
     let start = Date.now();
     const fs = require("fs");
-    const gna = require('./../generatenewaddress.js');
+    const gna = require('../generatenewaddress.js');
     const userdata = require(`./../../saves/users/${message.author.id}.json`);
-    const addToAddressBook = require("./../addtoaddressbook.js")
+    const addToAddressBook = require("../addtoaddressbook.js")
 
     var lastbalance;
 

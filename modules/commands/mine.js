@@ -3,11 +3,11 @@ function run(message) {
     if (message.content.length < 7) return message.reply("Wie wäre es mit Nonce angeben?");
     const crypto = require("crypto");
     const fs = require("fs");
-    const calculateDifficulty = require("./../calculateDifficulty.js");
-    const calculateDiffactor = require("./../calculateDiffactor.js");
-    const getMinerReward = require("./../getMinerReward.js");
-    const generateNewTxID = require("./../generateNewTxID.js");
-    const getUserByAddress = require("./../getUserByAddress.js");
+    const calculateDifficulty = require("../calculatedifficulty.js");
+    const calculateDiffactor = require("../calculatediffactor.js");
+    const getMinerReward = require("../getminerreward.js");
+    const generateNewTxID = require("../generatenewtxid.js");
+    const getUserByAddress = require("../getuserbyaddress.js");
 
     try {
         var minerWallet = require(`./../../saves/users/${message.author.id}.json`);

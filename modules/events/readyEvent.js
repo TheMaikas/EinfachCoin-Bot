@@ -1,25 +1,23 @@
 function run(client) {
-    const diff = require("./../calculatedifficulty.js");
-    const blocks = require("./../../blockchain/blockchain.json").lastBlockNumber;
-    client.user.setActivity(`für ${client.users.array().length} Nutzer.`, {
-        type: "PLAYING"
-    });
-    console.log(client.guilds);
+    const diff = require("../calculatedifficulty.js");
+    const fs = require('fs');
+    const blocks = (JSON.parse(fs.readFileSync("./blockchain/blockchain.json", 'utf-8'))).lastBlockNumber;
+
     setInterval(function () {
         let statusint = Math.floor(Math.random() * Math.floor(7));
         switch (statusint) {
             case 0:
-                client.user.setActivity(`für ${client.users.array().length} Nutzer.`, {
+                client.user.setActivity(`for ${client.users.array().length} Users.`, {
                     type: "PLAYING"
                 });
                 break;
             case 1:
-                client.user.setActivity(`auf ${client.guilds.array().length} Servern.`, {
+                client.user.setActivity(`on ${client.guilds.array().length} Servers.`, {
                     type: "WATCHING"
                 });
                 break;
             case 2:
-                client.user.setActivity(`in ${client.channels.array().length} Kanälen.`, {
+                client.user.setActivity(`in ${client.channels.array().length} Channels.`, {
                     type: "LISTENING"
                 });
                 break;
@@ -39,7 +37,7 @@ function run(client) {
                 });
                 break;
             case 6:
-                client.user.setActivity(diff.run(), {
+                client.user.setActivity("Difficulty " + diff.run(), {
                     type: "PLAYING"
                 });
                 break;
