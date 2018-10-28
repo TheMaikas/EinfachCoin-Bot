@@ -5,17 +5,17 @@ function run(message) {
     const fs = require("fs");
     const calculateDifficulty = require("../calculatedifficulty.js");
     const calculateDiffactor = require("../calculatediffactor.js");
-    const getMinerReward = require("../getminerreward.js");
     const generateNewTxID = require("../generatenewtxid.js");
     const getUserByAddress = require("../getuserbyaddress.js");
+    const getBlockReward = require("../getblockreward.js");
 
     try {
         var minerWallet = require(`./../../saves/users/${message.author.id}.json`);
     } catch (err) {
         message.channel.send("You don't have a wallet yet. Create one with '+createWallet'")
-        .then(msg => {
-            msg.delete(60000);
-        });
+            .then(msg => {
+                msg.delete(60000);
+            });
         return;
     }
 
@@ -65,7 +65,6 @@ function run(message) {
 
                 bytes = bytes + parseInt(JSON.stringify(Tx).length);
                 totalFee = totalFee + parseInt(pool.fee[fees[x]][y].fee);
-                console.log(bytes + " " + totalFee);
             }
         }
     }
@@ -95,7 +94,7 @@ function run(message) {
         transactions[newCoinsTxID] = {
             from: "0xEFC0000000000000000000000000000000000000000000000000000000000000000",
             to: minerAddress,
-            amount: (10 + totalFee),
+            amount: (parseInt(getBlockReward.run()) + parseInt(totalFee)),
             fee: 0,
             timestamp: (Math.floor(Date.now() / 1000)).toString()
         };
@@ -121,9 +120,7 @@ function run(message) {
             if (transactions[x].fee > 0) {
                 delete pool.fee[transactions[x].fee][x];
             }
-            console.log(typeof minerAddress)
             var receiveruser = getUserByAddress.run(transactions[x].to);
-            console.log(receiveruser);
             var receiver = JSON.parse(fs.readFileSync(`./saves/users/${receiveruser}.json`, 'utf-8'));
             receiver.addresses[transactions[x].to].balance = parseInt(receiver.addresses[transactions[x].to].balance) + parseInt(transactions[x].amount);
             receiver.addresses[transactions[x].to].transactions[x] = {
