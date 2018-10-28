@@ -1,12 +1,12 @@
 function run(client) {
     const diff = require("../calculatedifficulty.js");
     const fs = require('fs');
-    const blocks = (JSON.parse(fs.readFileSync("./blockchain/blockchain.json", 'utf-8'))).lastBlockNumber;
     const DBL = require("dblapi.js");
     const config = require("./../../config.json");
     const dbl = new DBL(config.dbltoken, client);
 
     setInterval(function () {
+        var blocks = (JSON.parse(fs.readFileSync("./blockchain/blockchain.json", 'utf-8'))).lastBlockNumber;
         let statusint = Math.floor(Math.random() * Math.floor(7));
         switch (statusint) {
             case 0:
@@ -40,13 +40,14 @@ function run(client) {
                 });
                 break;
             case 6:
-                client.user.setActivity("Difficulty " + diff.run(), {
+                client.user.setActivity("Difficulty " + diff.run()[0], {
                     type: "PLAYING"
                 });
                 break;
         }
     }, 30000);
 
+    dbl.postStats(client.guilds.size);
     setInterval(() => {
         dbl.postStats(client.guilds.size);
     }, 1800000);
