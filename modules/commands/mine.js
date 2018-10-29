@@ -1,6 +1,6 @@
 function run(message) {
     let start = Date.now();
-    if (message.content.length < 7) return message.reply("Wie wäre es mit Nonce angeben?");
+    if (message.content.length < 7) return message.reply("+mine <nonce>\nDon't know what the hell is nonce? -> +help nonce");
     const crypto = require("crypto");
     const fs = require("fs");
     const calculateDifficulty = require("../calculatedifficulty.js");
@@ -114,7 +114,10 @@ function run(message) {
 
         fs.writeFile(`./blockchain/${thisBlockNumber}.json`, JSON.stringify(data, null, 4));
         fs.writeFile(`./blockchain/blockchain.json`, JSON.stringify(data2, null, 4));
-        message.channel.send("Block mined!");
+        message.channel.send("Block mined!")
+        .then(msg => {
+            msg.delete(60000);
+        })
 
         for (x in transactions) {
             if (transactions[x].fee > 0) {

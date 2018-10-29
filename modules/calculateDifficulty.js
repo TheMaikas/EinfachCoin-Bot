@@ -22,7 +22,7 @@ function run(message) {
         var block1 = require(`./../blockchain/${i}.json`);
     }
     blocksare = block2.blocknumber;
-    blocksshouldbe = Math.round((Math.floor(Date.now() / 1000) - block1.timestamp) / (blockTime));
+    blocksshouldbe = Math.round((Math.floor(Date.now() / 1000) - block1.timestamp) / (blockTime)) + (i - 1);
 
 
     if (block1.timestamp == block2.timestamp) {
