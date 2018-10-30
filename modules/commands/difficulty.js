@@ -16,14 +16,6 @@ function run(message, client) {
             },
             title: "EinfachCoin Difficulty Stats",
             fields: [{
-                    name: "It should be this number of blocks: ",
-                    value: " " + blocksshouldbe
-                },
-                {
-                    name: "There are this number of blocks: ",
-                    value: " " + blocksare
-                },
-                {
                     name: "Difficulty: ",
                     value: " " + difficulty
                 }
