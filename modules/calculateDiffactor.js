@@ -60,8 +60,11 @@ function run(difficulty) {
     } else if (difficulty >= 2) {
         diffactor = 5;
         diffactor2 = "0";
+    } else if (difficulty >= 1.5) {
+        diffactor = 10;
+        diffactor2 = "0";
     } else if (difficulty >= 1) {
-        diffactor = 64;
+        diffactor = 32;
         diffactor2 = "0";
     }
 
