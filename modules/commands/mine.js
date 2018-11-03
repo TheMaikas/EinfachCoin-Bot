@@ -1,4 +1,4 @@
-function run(message) {
+async function run(message) {
     let start = Date.now();
     if (message.content.length < 7) return message.reply("+mine <nonce>\nDon't know what the hell is nonce? -> +help nonce");
     const crypto = require("crypto");
@@ -8,6 +8,8 @@ function run(message) {
     const generateNewTxID = require("../generatenewtxid.js");
     const getUserByAddress = require("../getuserbyaddress.js");
     const getBlockReward = require("../getblockreward.js");
+    const r = require('rethinkdb');
+    const main = require("./../../Bot.js");
 
     try {
         var minerWallet = require(`./../../saves/users/${message.author.id}.json`);
@@ -38,7 +40,7 @@ function run(message) {
 
     var previousHash = latestBlock.hash;
 
-    var difficultyvalue = calculateDifficulty.run(message, nonce)[0];
+    var difficultyvalue = await calculateDifficulty.run(message, nonce)[0];
 
     var diffactors = calculateDiffactor.run(difficultyvalue);
     var diffactor = diffactors[0];
@@ -113,6 +115,12 @@ function run(message) {
         };
 
         fs.writeFile(`./blockchain/${thisBlockNumber}.json`, JSON.stringify(data, null, 4));
+
+        console.log(main.connection);
+        await r.db('EinfachCoin').table("blockchain").insert(JSON.stringify(data, null, 4)).run(main.connection, function(){
+        });
+
+
         fs.writeFile(`./blockchain/blockchain.json`, JSON.stringify(data2, null, 4));
         message.channel.send("Block mined!")
         .then(msg => {
