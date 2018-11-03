@@ -15,17 +15,21 @@ function run(message) {
     if (blockchain.lastBlockNumber < 100) {
         try {
             var block1 = require("../blockchain/0.json");
+            blocksare = block2.blocknumber;
         } catch (err) {
             return [1, null, null];
         }
     } else {
         var block1 = require(`../blockchain/${i}.json`);
-        var block0 = require(`../blockchain/${i}.json`)
+        
+        blocksare = block2.blocknumber - i;
     }
-    
-    blocksare = block2.blocknumber;
-    blocksshouldbe = Math.round((Math.floor(Date.now() / 1000) - block1.timestamp) / (blockTime)) + (i - 1);
 
+    var block0 = require(`../blockchain/0.json`);
+    
+    
+    blocksshouldbe = Math.round((Math.floor(Date.now() / 1000) - block1.timestamp) / (blockTime));
+    
     blocksshouldbetotal = Math.round((Math.floor(Date.now() / 1000) - block0.timestamp) / (blockTime));
 
 
@@ -36,7 +40,9 @@ function run(message) {
     var blockdifferencep = (blocksare / blocksshouldbe);
     var blockdifferencetotalp = (blocksare / blocksshouldbetotal);
     difficulty = difficulty * ( ( blockdifferencep + 5 ) / 6 );
+    console.log(blockdifferencep + "\n" + blockdifferencetotalp + "\n" + difficulty);
     difficulty = difficulty * ( ( blockdifferencetotalp + 5 ) / 6 );
+    console.log(difficulty);
     delete block2;
     if (difficulty == Infinity) {
         message.channel.send(":warning: INTEGER OVERFLOW!!!")
