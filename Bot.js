@@ -6,7 +6,6 @@ const config = require("./config.json");
 const readyEvent = require("./modules/events/readyEvent");
 const messageEvent = require("./modules/events/messageEvent");
 const r = require('rethinkdb');
-var connection = null;
 
 
 client.on("ready", () => {
@@ -27,15 +26,14 @@ client.on("message", message => {
 
 client.login(config.token);
 
-var connection = null;
-
 r.connect( {host: 'localhost', port: 28015}, function(err, conn) {
     if (err) throw err;
-    connection = conn;
+    module.exports = {
+      connection: conn
+    };
 });
 
 
 
 console.log("Started in " + (Date.now() - start) + " ms");
 
-module.exports = connection;
