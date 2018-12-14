@@ -14,9 +14,9 @@ function run(message, client) {
                 name: client.user.username,
                 icon_url: client.user.avatarURL
             },
-            title: "EinfachCoin Difficulty Stats",
+            title: "EinfachCoin Schwierigkeit Statistiken",
             fields: [{
-                    name: "Difficulty: ",
+                    name: "Schwierigkeit: ",
                     value: " " + difficulty
                 }
             ],

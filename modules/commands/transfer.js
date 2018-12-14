@@ -15,7 +15,7 @@ function run(message) {
 
     split = message.content.split(' ');
     if (split.length < 4) {
-        message.channel.send("Maybe you should give some more parameters? ```+transfer <TO> <AMOUNT> <FEE>```")
+        message.channel.send("Vielleicht solltests du ein paar Eingaben mehr machen? ```+transfer <EMPFÄNGER> <WERT> <GEBÜHR>```")
         .then(msg => {
             msg.delete(60000);
         });
@@ -23,7 +23,7 @@ function run(message) {
         to = split[1];
         amount = split[2];
         fee = split[3];
-        if(fee < 1) return message.channel.send(":warning: Fee must be at least 1")
+        if(fee < 1) return message.channel.send(":warning: Gebühr muss mindestens 1 betragen")
         .then(msg => {
             msg.delete(60000);
         });

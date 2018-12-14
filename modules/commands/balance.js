@@ -6,7 +6,7 @@ function run(message) {
         try {
             var userdata = JSON.parse(fs.readFileSync(`./saves/users/${message.mentions.users.array()[0].id}.json`, 'utf-8'));
             var msg = "";
-            msg = msg + "Addresses from " + message.mentions.users.array()[0].id;
+            msg = msg + "Adressen von " + message.mentions.users.array()[0].id;
 
             for (let x in userdata.addresses) {
                 msg = msg + "\n" + x + ": " + (parseInt(userdata.addresses[x].balance) / 100);
@@ -18,7 +18,7 @@ function run(message) {
                 });
 
         } catch (err) {
-            message.channel.send("This user doesn't have a wallet yet!")
+            message.channel.send("Der Nutzer hat kein Wallet!")
                 .then(msg => {
                     msg.delete(60000);
                 });
@@ -30,7 +30,7 @@ function run(message) {
 
             var userdata = JSON.parse(fs.readFileSync(`./saves/users/${message.author.id}.json`, 'utf-8'));
             var msg = "";
-            msg = msg + "Addresses from " + message.author.username;
+            msg = msg + "Adressen von " + message.author.username;
 
             for (let x in userdata.addresses) {
                 msg = msg + "\n" + x + ": " + (parseInt(userdata.addresses[x].balance) / 100);
@@ -42,7 +42,7 @@ function run(message) {
             });
 
         } catch (err) {
-            message.channel.send("You don't have a wallet yet!" + err)
+            message.channel.send("Du besitzt noch kein Wallet!" + err)
                 .then(msg => {
                     msg.delete(60000);
                 });

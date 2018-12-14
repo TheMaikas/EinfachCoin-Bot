@@ -7,7 +7,7 @@ function run(message) {
     try {
 
         require(`./../../saves/users/${message.author.id}.json`);
-        message.channel.send("You already have a wallet? WTF?")
+        message.channel.send("Du hast bereits ein Wallet? WTF?")
         .then(msg => {
             msg.delete(60000);
         });
@@ -29,7 +29,7 @@ function run(message) {
         addToAddressBook.run(message.author.id, newAddress);
 
         fs.writeFile(`./saves/users/${message.author.id}.json`, JSON.stringify(data, null, 4));
-        message.channel.send("Wallet created!")
+        message.channel.send("Wallet erstellt!")
         .then(msg => {
             msg.delete(60000);
         });

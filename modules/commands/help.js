@@ -7,11 +7,11 @@ function run(message, client) {
                     name: client.user.username,
                     icon_url: client.user.avatarURL
                 },
-                title: "EinfachCoin Help",
-                description: "Welcome to the <:EinfachCoin:437267554377924608> Help!",
+                title: "EinfachCoin Hilfe",
+                description: "Willkommen zu der <:EinfachCoin:437267554377924608> Hilfe!",
                 fields: [{
-                    name: "What is 'nonce'",
-                    value: "Just type anything after the '+mine' command, you can use random numbers, random letters or just anything else. You can even just hit your head on the keyboard.\nThen a difficult calculation is performed and a so-called hash value is calculated from the current content of the block and your entered value.\nIf this hash value meets the current difficulty level, it will be written into the block, the block will be appended to the blockchain and you will receive your Miner reward. The lower the difficulty, the easier it is to find a value that fits.\n\n:warning: If you enter the same value several times in a row, nothing will change, because neither the block content nor your value will change, the same hash as before will come out.\n\nHow does the difficulty work? - Use '+help difficulty'."
+                    name: "Was ist 'nonce'",
+                    value: "Schreib einfach irgendwas nach dem '+mine' Befehl, du kannst zufällige Nummer, zufällige Buchstaben oder irgendwas anderes benutzen. Du kannst auch einfach deinen Kopf auf die Tastatur hauen.\nDann wird eine Schwierigkeitsberechnung gemacht und ein sogenannter Hashwert generiert der aus dem Inhalt des momentanen Blocks und deinem eingegebenen Wert besteht.\nWenn der Hash Wert dem momentanen Schwierigkeitsgrad entspricht, wird er in den Block geschrieben, der Block wird in die Blockchain gepackt und du wirst deine Mining Belohnung erhalten. Je niedriger die Schwierigkeit, um so einfacher ist es ein Wert zu finden der passt.\n\n:warning: Wenn du den selben Wert mehrmals hintereinander eingibst, wird nichts passieren, weil weder das Zeug im momentanen Block noch dein Wert sich ändert, weshalb der selbe Hashwert rauskommt.\n\nWie funktioniert die Schwierigkeit? - Nutze '+help difficulty'."
                 }],
                 footer: {
                     icon_url: client.user.avatarURL,
@@ -27,11 +27,11 @@ function run(message, client) {
                     name: client.user.username,
                     icon_url: client.user.avatarURL
                 },
-                title: "EinfachCoin Help",
-                description: "Welcome to the <:EinfachCoin:437267554377924608> Help!",
+                title: "EinfachCoin Hilfe",
+                description: "Willkommen zu der <:EinfachCoin:437267554377924608> Hilfe!",
                 fields: [{
-                    name: "What is 'difficulty'",
-                    value: "At the moment a new block should be found every 10 minutes, if too many blocks are found, the difficulty increases, if too few blocks, the difficulty decreases. You can display the current difficulty with **'+difficulty'**."
+                    name: "Was ist 'difficulty'",
+                    value: "Zum jetzigen Zeitpunkt soll ein Block alle 10 Minuten gefunden werden, wenn zu viele Blöcke gefunden werden, steigt die Schwierigkeit, wenn zu wenig Blöcke, sinkt die Schwierigkeit. Du kannst die momentane Schwierigkeit mit **'+difficulty'** aufrufen."
                 }],
                 footer: {
                     icon_url: client.user.avatarURL,
@@ -47,23 +47,23 @@ function run(message, client) {
                     name: client.user.username,
                     icon_url: client.user.avatarURL
                 },
-                title: "EinfachCoin Help",
-                description: "Welcome to the <:EinfachCoin:437267554377924608> Help!",
+                title: "EinfachCoin Hilfe",
+                description: "Willkommen zu der <:EinfachCoin:437267554377924608> Hilfe!",
                 fields: [{
-                        name: "What does this Bot do?",
-                        value: "EinfachCoin is a DiscordBot, which is a kind of crypto currency. Of course the whole thing is not decentralized and does not run on different servers. But there is a blockchain, you can mine blocks and of course you can also send \"EinfachCoins\". EinfachCoin is constantly being further developed. If you have wishes or ideas, just [post them in our Github Repository](https://github.com/EinfachAlex/EinfachCoin-Bot/issues)."
+                        name: "Was macht dieser Bot?",
+                        value: "EinfachCoin ist ein DiscordBot, welcher wie eine Kryptowährung ist. Natürlich ist alles nicht dezentralisiert und läuft nicht auf unterschiedlichen Servern. Aber es gibt eine Blockchain, man kann Blöcke minen und natürlich kannst du auch \"EinfachCoins\" versenden. EinfachCoin wird kaum noch weiterentwickelt. Wenn du Wünsche oder Ideen hast, [poste sie in unserem Github Repository](https://github.com/EinfachAlex/EinfachCoin-Bot/issues)."
                     },
                     {
-                        name: "Why the hell did you create this Bot?",
-                        value: "I have been interested in crypto currencies for a long time and wanted to see if I could program a blockchain by myself. In the end this bot came out."
+                        name: "Warum zur Hölle hast du den Bot erstellt?",
+                        value: "Ich interesiere mich schon länger für Kryptowährungen und wollte wissen ob ich selber eine Blockchain programmieren kann. Am Ende kam dieser Bot raus."
                     },
                     {
                         name: "Can I use this 'Currency' to pay at my favourite Store?",
                         value: "I wish you could ;("
                     },
                     {
-                        name: "__Commands__",
-                        value: "**+balance** - Shows your balances for every of your addresses.\n**+createNewAddress** - Generates you a new Address\n**+createWallet** - Creates your Wallet. Use this command first.\n**+getBlock <Number>** - Shows you a specific Block\n**+mine <nonce>** - Try to mine a block. *Don't know what the hell 'nonce' is. Then use command '+help nonce'"
+                        name: "__Befehle__",
+                        value: "**+balance** - Zeig den Kontostand aller deiner Adressen.\n**+createNewAddress** - Erstellt dir eine neue Adresse\n**+createWallet** - Erstellt dein Wallet. Benutze diesen Befehl als erstes.\n**+getBlock <Nummer>** - Zeigt einen bestimmten Block\n**+mine <nonce>** - Versuche einen Block zu minen. *Weißt nicht was zur Hölle 'nonce' ist. Dann benutze den Befehl '+help nonce'"
                     },
                 ],
                 footer: {

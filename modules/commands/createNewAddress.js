@@ -12,7 +12,7 @@ function run(message) {
     }
 
     if (lastbalance == 0) {
-        message.channel.send("You don't need a new address! There are no coins on your newest address!")
+        message.channel.send("Du brauchst keine neue Adresse! Auf deiner neusten Adresse sind noch keine Coins!")
         .then(msg => {
             msg.delete(60000);
         });

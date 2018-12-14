@@ -1,6 +1,6 @@
 function run(message) {
     let start = Date.now();
-    if (message.content.length < 7) return message.reply("+mine <nonce>\nDon't know what the hell is nonce? -> +help nonce");
+    if (message.content.length < 7) return message.reply("+mine <nonce>\nDu weißt nicht was zur Hölle 'nonce' ist? -> +help nonce");
     const crypto = require("crypto");
     const fs = require("fs");
     const calculateDifficulty = require("../calculatedifficulty.js");
@@ -12,7 +12,7 @@ function run(message) {
     try {
         var minerWallet = require(`./../../saves/users/${message.author.id}.json`);
     } catch (err) {
-        message.channel.send("You don't have a wallet yet. Create one with '+createWallet'")
+        message.channel.send("Du hast noch kein Wallet. Erstelle eins mit '+createWallet'")
             .then(msg => {
                 msg.delete(60000);
             });
@@ -114,7 +114,7 @@ function run(message) {
 
         fs.writeFile(`./blockchain/${thisBlockNumber}.json`, JSON.stringify(data, null, 4));
         fs.writeFile(`./blockchain/blockchain.json`, JSON.stringify(data2, null, 4));
-        message.channel.send("Block mined!")
+        message.channel.send("Block gemined.")
         .then(msg => {
             msg.delete(60000);
         })
@@ -137,7 +137,7 @@ function run(message) {
 
         }
     } else {
-        message.channel.send("Nope! Unfortunately that didn't work. Try something else instead! (Difficulty: " + difficultyvalue + ")")
+        message.channel.send("Nope! Leider hat das nicht funktioniert. Versuche einen anderen Wert! (Schwierigkeit: " + difficultyvalue + ")")
             .then(msg => {
                 msg.delete(10000);
             });

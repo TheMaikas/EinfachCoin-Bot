@@ -9,7 +9,7 @@ function run(message, client) {
                 name: client.user.username,
                 icon_url: client.user.avatarURL
             },
-            title: "EinfachCoin Stats",
+            title: "EinfachCoin Statistiken",
             description: "<:EinfachCoin:437267554377924608> <:EinfachCoin:437267554377924608> <:EinfachCoin:437267554377924608> <:EinfachCoin:437267554377924608> <:EinfachCoin:437267554377924608>",
             fields: [{
                     name: "Servers",
